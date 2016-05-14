@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>模拟滚动条</title>
+<style type="text/css">
+body, div {
+    margin:0;
+    padding:0;
+}
+.scrollbar {
+    width:500px;
+    height:300px;
+    border:2px solid #CCF;
+    margin:100px auto;
+    position:relative;
+    overflow:hidden;
+}
+.scroll {
+    position:absolute;
+    top:0;
+    left:0;
+    background:#f2f2f2;
+    color:#F00;
+    padding:0 10px;
+    line-height:24px;
+    font-size:13px;
+    margin-right:10px;
+}
+.barwrap {
+    width:10px;
+    height:100%;
+    position:absolute;
+    right:0;
+    top:0;
+    background:#C69;
+}
+.bar {
+    position:absolute;
+    top:0;
+    left:0;
+    width:10px;
+    height:10px;
+    background:#03F;
+}
+</style>
+</head>
+<body>
+<div class="scrollbar" id="scrollbar">
+	<div class="scroll" id="scroll">
+		<p>日前，国际知名反病毒评测机构AV-C发布最新一期手动扫描测试报告，国内360杀毒软件以99.5%的高查杀率和极少误报被AV-C评为最佳级别（Advanced+）。在不久前AV-C发布的动态防护评测中，360杀毒则是唯一得分超过99%的国产安全软件。</p>
+		<p>据了解，参与本次测试的国内外安全产品共23款，其中国内安全产品4款。由于金山毒霸使用未公开版本在评测中作弊，被AV-C评测机构取消了成绩，百度杀毒则排名垫底没有获得认证。 </p>
+		<p>AV-C手动扫描主要通过详细测试安全软件的查杀比率、误报数量，考验安全软件的扫描查杀能力，360杀毒等多款国内杀毒软件均在此项测试中达到99%以上的查杀率。不过对普通用户来说，杀毒软件的防护能力更为重要。在AV-C对杀毒软件的防护能力评测中，仅有360杀毒对病毒拦截率超过99%，排名占据前列；腾讯等其他国产软件则排名倒数。 </p>
+		<p>随着微软对Windows XP停止服务支持，安全软件对XP的防护能力成为行业关注的焦点。在此前国内举办的首个XP挑战赛中，腾讯和金山相继在一两分钟内被黑客攻破，之后又陆续被多人次攻破，360XP盾甲则成功防御了所有黑客攻击。 </p>
+		<p>而在国际知名机构COSEINC发布的XP漏洞防护评测报告中，360同样以100%的防御成功率排名第一，德国的Avira和俄罗斯的卡巴斯基分别名列第二和第三；腾讯电脑管家和金山毒霸则双双垫底，拦截率仅为33%，表现远低于63%的平均水平。 </p>
+		<p>日前，国际知名反病毒评测机构AV-C发布最新一期手动扫描测试报告，国内360杀毒软件以99.5%的高查杀率和极少误报被AV-C评为最佳级别（Advanced+）。在不久前AV-C发布的动态防护评测中，360杀毒则是唯一得分超过99%的国产安全软件。</p>
+		<p>据了解，参与本次测试的国内外安全产品共23款，其中国内安全产品4款。由于金山毒霸使用未公开版本在评测中作弊，被AV-C评测机构取消了成绩，百度杀毒则排名垫底没有获得认证。 </p>
+		<p>AV-C手动扫描主要通过详细测试安全软件的查杀比率、误报数量，考验安全软件的扫描查杀能力，360杀毒等多款国内杀毒软件均在此项测试中达到99%以上的查杀率。不过对普通用户来说，杀毒软件的防护能力更为重要。在AV-C对杀毒软件的防护能力评测中，仅有360杀毒对病毒拦截率超过99%，排名占据前列；腾讯等其他国产软件则排名倒数。 </p>
+		<p>随着微软对Windows XP停止服务支持，安全软件对XP的防护能力成为行业关注的焦点。在此前国内举办的首个XP挑战赛中，腾讯和金山相继在一两分钟内被黑客攻破，之后又陆续被多人次攻破，360XP盾甲则成功防御了所有黑客攻击。 </p>
+		<p>而在国际知名机构COSEINC发布的XP漏洞防护评测报告中，360同样以100%的防御成功率排名第一，德国的Avira和俄罗斯的卡巴斯基分别名列第二和第三；腾讯电脑管家和金山毒霸则双双垫底，拦截率仅为33%，表现远低于63%的平均水平。 </p>
+		<p>日前，国际知名反病毒评测机构AV-C发布最新一期手动扫描测试报告，国内360杀毒软件以99.5%的高查杀率和极少误报被AV-C评为最佳级别（Advanced+）。在不久前AV-C发布的动态防护评测中，360杀毒则是唯一得分超过99%的国产安全软件。</p>
+		<p>据了解，参与本次测试的国内外安全产品共23款，其中国内安全产品4款。由于金山毒霸使用未公开版本在评测中作弊，被AV-C评测机构取消了成绩，百度杀毒则排名垫底没有获得认证。 </p>
+		<p>AV-C手动扫描主要通过详细测试安全软件的查杀比率、误报数量，考验安全软件的扫描查杀能力，360杀毒等多款国内杀毒软件均在此项测试中达到99%以上的查杀率。不过对普通用户来说，杀毒软件的防护能力更为重要。在AV-C对杀毒软件的防护能力评测中，仅有360杀毒对病毒拦截率超过99%，排名占据前列；腾讯等其他国产软件则排名倒数。 </p>
+		<p>随着微软对Windows XP停止服务支持，安全软件对XP的防护能力成为行业关注的焦点。在此前国内举办的首个XP挑战赛中，腾讯和金山相继在一两分钟内被黑客攻破，之后又陆续被多人次攻破，360XP盾甲则成功防御了所有黑客攻击。 </p>
+		<p>而在国际知名机构COSEINC发布的XP漏洞防护评测报告中，360同样以100%的防御成功率排名第一，德国的Avira和俄罗斯的卡巴斯基分别名列第二和第三；腾讯电脑管家和金山毒霸则双双垫底，拦截率仅为33%，表现远低于63%的平均水平。 </p>
+	</div>
+	<div class="barwrap" id="barwrap">
+		<div class="bar" id="bar"></div>
+	</div>
+</div>
+<div style="height:1000px;">1232546</div>
+</body>
+</html>
+<script type="text/javascript">
+function $(id){
+	return document.getElementById(id);
+}
+function bind(obj, type, handler) {
+	var node = typeof obj == "string" ? $(obj) : obj;
+	if (node.addEventListener) {
+		node.addEventListener(type, handler, false);
+	} else if (node.attachEvent) {
+		node.attachEvent('on' + type, handler);
+	} else {
+		node['on' + type] = handler;
+	}
+}
+function mouseWheel(obj, handler) {
+	var node = typeof obj == "string" ? $(obj) : obj;
+	bind(node, 'mousewheel', function (event) {
+		var data = -getWheelData(event);
+		handler(data);
+		if (document.all) {
+			window.event.returnValue = false;
+		} else {
+			event.preventDefault();
+		}
+
+	});
+	//火狐
+	bind(node, 'DOMMouseScroll', function (event) {
+		var data = getWheelData(event);
+		handler(data);
+		event.preventDefault();
+	});
+	function getWheelData(event) {
+		var e = event || window.event;
+		return e.wheelDelta ? e.wheelDelta : e.detail * 40;
+	}
+}
+
+
+
+function addScroll() {
+	this.init.apply(this, arguments);
+}
+
+addScroll.prototype = {
+	init:function(scrollbar,scroll,barwrap,bar){
+		this.scrollbar=$(scrollbar);
+		this.scrolls=$(scroll);
+		this.barwrap=$(barwrap);
+		this.bar=$(bar);
+	
+		//var barHeight=bar.offsetHeight;		
+		this.barwrapHeight=this.barwrap.offsetHeight;
+		this.scrollHeight=this.scrolls.offsetHeight;
+		this.scrollbarHeight=this.scrollbar.offsetHeight;
+		
+		this.barHeight=this._resizeScorll();
+    
+		this._tragScroll();
+		
+		this._clickScroll();
+		
+		this._wheelChange();
+	
+	},
+	//修改内容的显示位置
+	_depo:function(po){
+		if(po<0 || po==0){
+                po=0;
+            }
+            if(po>(this.barwrapHeight-this.barHeight)){
+                po=this.barwrapHeight-this.barHeight;
+            }
+        var ji=(this.barwrapHeight-this.barHeight)/po;
+        var scrollsTop=(this.scrollbarHeight-this.scrollHeight)/ji;    
+        this.scrolls.style.top=scrollsTop+"px";
+	},
+	//调整滑块高度
+	_resizeScorll:function(){
+		var barHeight=this.scrollbarHeight/this.scrollHeight*this.barwrapHeight;
+    
+		if(barHeight<10){
+			barHeight=10;
+		}
+		
+		this.bar.style.height=barHeight+"px";
+		return barHeight;
+	},
+	//拖动滑块
+	_tragScroll:function(){
+		var _this =this;
+		var bartop=_this.bar.offsetTop;
+		_this.bar.onmousedown=function(e){
+			var e=e||event;
+			var barTop=_this.bar.offsetTop;
+			var disY=e.clientY-barTop;
+			document.onmousemove=function(e){
+				var e=e||event;
+				var barTop2=e.clientY-disY;
+				if(barTop2<0){
+					barTop2=0;
+				}
+				if(barTop2>(_this.barwrapHeight-_this.barHeight)){
+					barTop2=_this.barwrapHeight-_this.barHeight;
+				}
+				_this.bar.style.top=barTop2+"px";
+				_this._depo(barTop2);
+			}
+			document.onmouseup=function(){
+				document.onmousemove=null;
+				document.onmouseup=null;
+			}
+			return false;
+		}
+	},
+	//点击滚动条移动滑块
+	_clickScroll:function(){
+		var _this = this;
+		_this.barwrap.onclick=function(e){
+			var e=e||event;
+			var disY2=e.clientY-_this.scrollbar.offsetTop-_this.bar.offsetHeight/2;
+			_this.bar.style.top=disY2+"px";
+			_this._depo(disY2);
+		}
+	},
+	//鼠标滚轮滚动，滚动条滚动
+	_wheelChange:function(){
+		var _this= this;
+		var node =this.scrollbar;
+		var disY =0;
+		var h1= parseInt(_this.barHeight);
+		var h2= parseInt(_this.barwrapHeight)-parseInt(_this.barHeight);
+		mouseWheel(node, function (data) {
+			if(data>0&&disY<=h2){
+				disY+=10;
+			}else if(data<0&&disY>0){
+				disY-=10;
+				if(disY<=0){
+					disY=0;
+				}
+			}
+			_this.bar.style.top=disY+"px";
+			_this._depo(disY);
+		})
+	}
+}
+
+
+new addScroll('scrollbar', 'scroll', 'barwrap','bar');
+
+</script>
