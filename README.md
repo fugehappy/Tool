@@ -1,2 +1,2 @@
 # Tool
-this is public Tool package
+This is a  kit.
