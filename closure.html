@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>闭包的应用</title>
+</head>
+<body>
+
+
+
+<script type="text/javascript">
+	
+/*闭包的应用：
+1.闭包就是能够读取其他函数内部变量的函数。
+2.让这些变量的值始终保持在内存中。
+3.闭包可以保护函数内的变量安全。	*/
+var loopPlayInit=(function(){
+	//定义公共变量
+	alert(1);
+	function init(){
+	
+	}
+	
+	return init;
+})(); //匿名函数
+
+loopPlayInit();
+</script>
+</body>
+</html>
