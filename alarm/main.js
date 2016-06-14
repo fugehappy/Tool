@@ -28,6 +28,18 @@ require([], function (require){
 	
 
 	db.withDatabase();
+	db.withStoreRequest();
 	alarm.isEnabled();
 	s.isEnabled();
+	
+	
+	var btn = document.getElementById('btn');
+	
+	btn.onclick = function(){
+		var data = document.getElementById('enter').value;
+		if(trim(data)==='')return false;
+		
+		//stored data
+		console.log(123);
+	}	
 });

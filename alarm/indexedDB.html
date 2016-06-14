@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8"/>
+<head>
+<script type="text/javascript">
+var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || ''; 
+function openDB(name,version) {
+	var version=version || 1;
+	 
+	if (indexedDB ==='') {
+		console.log("not support IndexedDB!");
+		return false;
+	}
+	
+	var request = indexedDB.open(name,version);
+
+	request.onerror=function(e){
+		console.log(e.currentTarget.error.message);
+	};
+
+	request.onsuccess=function(e){	
+		console.log('success to open DB');
+		myDB.db=request.result;
+	};
+
+	//The first time you open the page to initialize a database is called, or when a version number changes
+	request.onupgradeneeded=function(e){	
+		var db=e.target.result;
+		if(!db.objectStoreNames.contains('students')){
+			db.createObjectStore('students',{keyPath:"id"});
+			//db.createObjectStore('students',{autoIncrement: true});
+		}		
+
+		/*if(db.objectStoreNames.contains('undefined')){
+			console.log('delete students');
+            db.deleteObjectStore('undefined'); 
+		}*/
+		
+		//store.createIndex('nameIndex','name',{unique:true});
+		
+		console.log('DB version changed to '+version);		
+	};
+}
+
+function closeDB(db){
+	db.close();
+}
+
+function deleteDB(name){
+	try{
+		indexedDB.deleteDatabase(name);
+	}catch(e){
+
+	}	
+}
+
+
+function addData(db,storeName){	
+	var transaction=db.transaction(storeName,'readwrite'); 
+	var store=transaction.objectStore(storeName); 
+
+	for(var i=0;i<students.length;i++){
+		store.add(students[i]);
+	}
+	console.log('add data');
+}
+
+function getDataByKey(db,storeName,value){
+	var transaction=db.transaction(storeName,'readonly'); 
+	var store=transaction.objectStore(storeName); 
+	var request=store.get(value);//Search data
+
+	request.onsuccess=function(e){ 
+		var student=e.target.result; 
+		console.log(student.name+'...'+student.age); 
+	};	
+}
+
+function updateDataByKey(db,storeName,value){
+	var transaction=db.transaction(storeName,'readwrite'); 
+	var store=transaction.objectStore(storeName); 
+	var request=store.get(value); 
+	request.onsuccess=function(e){ 
+		var student=e.target.result; 
+		student.age=35;
+		store.put(student); 
+	};
+	console.log('update data');
+}
+
+function deleteDataByKey(db,storeName,value){
+	var transaction=db.transaction(storeName,'readwrite'); 
+	var store=transaction.objectStore(storeName); 
+	store.delete(value); 
+}
+
+function clearObjectStore(db,storeName){	
+	var transaction=db.transaction(storeName,'readwrite'); 
+	var store=transaction.objectStore(storeName); 
+	store.clear();
+	console.log('clear data');
+}
+
+function deleteObjectStore(db,storeName){
+	var transaction=db.transaction(storeName,'versionchange'); 
+	db.deleteObjectStore(storeName);
+}
+
+function fetchStoreByCursor(db,storeName){
+	var transaction=db.transaction(storeName);
+	var store=transaction.objectStore(storeName);
+	var request=store.openCursor();
+	request.onsuccess=function(e){
+		var cursor=e.target.result;
+		if(cursor){
+			console.log(cursor.key);
+			var currentStudent=cursor.value;
+			console.log(currentStudent.name +'===');
+			cursor.continue();
+		}
+	};
+}
+
+function getDataByIndex(db,storeName){	
+	var transaction=db.transaction(storeName);
+	var store=transaction.objectStore(storeName);
+	var index = store.index("nameIndex");
+	index.get('Byron').onsuccess=function(e){
+		var student=e.target.result;
+		console.log(student.id);
+	}
+}
+
+function getMultipleData(db,storeName){
+	var transaction=db.transaction(storeName);
+	var store=transaction.objectStore(storeName);
+	var index = store.index("nameIndex");
+	var request=index.openCursor(null,IDBCursor.prev);
+	/*
+	IDBKeyRange.only(value):只获取指定数据
+	IDBKeyRange.lowerBound(value,isOpen)：获取最小是value的数据，第二个参数用来指示是否排除value值本身，也就是数学中的是否是开区间
+	IDBKeyRange.upperBound(value,isOpen)：和上面类似，用于获取最大值是value的数据
+	IDBKeyRange.bound(value1,value2,isOpen1,isOpen2)：
+	*/
+	request.onsuccess=function(e){
+		var cursor=e.target.result;
+		if(cursor){
+			var student=cursor.value;
+			console.log(student.name);
+			cursor.continue();
+		}
+	}
+}
+
+
+var students=[{ 
+		id:1001, 
+		name:"Byron", 
+		age:24 
+	},{ 
+		id:1002, 
+		name:"Frank", 
+		age:30 
+	},{ 
+		id:1003, 
+		name:"Aaron", 
+		age:26 
+	}];
+
+var myDB={
+	name:'test',
+	version:2,
+	db:null
+};
+
+
+
+function openZone(){
+	openDB(myDB.name,myDB.version);	
+}
+
+function add(){
+	addData(myDB.db,'students');
+}
+
+function del(){
+	setTimeout(function(){
+		closeDB(myDB.db);
+		deleteDB(myDB.name);
+		console.log('del');
+	},1000);
+}
+
+function getKey(){
+	getDataByKey(myDB.db,'students',students[1].id);
+}
+
+function setKey(){
+	updateDataByKey(myDB.db,'students',students[1].id);
+}
+
+function clearData(){
+	clearObjectStore(myDB.db,'students');
+}
+function byCursor(){
+	fetchStoreByCursor(myDB.db,'students');
+}
+openZone();
+</script>
+</head>
+<body>
+<!--<button onclick="openZone()">create</button>-->
+<button onclick="add()">add</button>
+<button onclick="del()">delete</button>
+<button onclick="getKey()">get</button>
+<button onclick="setKey()">set</button>
+<button onclick="clearData()">clear</button>
+<button onclick="byCursor()">byCursor</button>
+</body>
+</html>
