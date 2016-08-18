@@ -4,6 +4,11 @@
 <head>
 <script type="text/javascript">
 var indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB || ''; 
+/*
+*function openDB
+*@param name
+*@param version
+*/
 function openDB(name,version) {
 	var version=version || 1;
 	 
@@ -54,7 +59,11 @@ function deleteDB(name){
 	}	
 }
 
-
+/*
+*function addData
+*@param db
+*@param storeName
+*/
 function addData(db,storeName){	
 	var transaction=db.transaction(storeName,'readwrite'); 
 	var store=transaction.objectStore(storeName); 
