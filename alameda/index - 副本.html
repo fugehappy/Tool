@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>requestAnimationFrame</title>
+</head>
+<body>
+	<script>
+	requestAnimationFrame 是专门为实现高性能的帧动画而设计的一个API，支持情况，
+	包括IE10+，Firefox，Chrome，Safari，Opera等，在移动设备上，ios6以上版本以及IE mobile 10以上也支持requestAnimationFrame，目前安卓上的原生浏览器并不支持requestAnimationFrame，安卓版本的chrome 16+也是支持requestAnimationFrame的。
+
+	优势：
+
+1、requestAnimationFrame 会把每一帧中的所有DOM操作集中起来，在一次重绘或回流中就完成，并且重绘或回流的时间间隔紧紧跟随浏览器的刷新频率，一般来说，这个频率为每秒60帧。
+
+2、在隐藏或不可见的元素中，requestAnimationFrame将不会进行重绘或回流，这当然就意味着更少的的cpu，gpu和内存使用量。
+	</script>	
+</body>
+</html>
